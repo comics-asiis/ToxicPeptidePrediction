@@ -32,7 +32,3 @@ elif len(sys.argv) > 1:
 
 else:
     print('No input detected')
-    print('Run ToxinPred dataset')
-    print('Output directory:', os.path.dirname(os.path.realpath(__file__)))
-    output_filename = modelwizard.Load4modelsAndPredict('data/toxinpred_indepdataset.fasta')
-    print('Result file name:', output_filename)
