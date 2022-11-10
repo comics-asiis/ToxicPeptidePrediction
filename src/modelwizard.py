@@ -1,24 +1,15 @@
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
 import numpy as np
 import pickle
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
-import sys
-import pandas as pd
-import csv
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import StandardScaler
 from datetime import datetime
 import accessdata
 import extractfeature
 
 def Load4modelsAndPredict(input_fastapath, ul_seqlen=50, rnn_cutoff=0.5, output_dir=None):
     pred_seqDi, notproc_seqDi = accessdata.ReadFasta(input_fastapath, ul_seqlen=ul_seqlen)
-
-    # 3 ML models: SVM, RF, & GBM
     model_svc = pickle.load(open('model_svc.pickle', 'rb'))
     scaler_svc = pickle.load(open('scaler_svc.pkl', 'rb'))
     model_rf = pickle.load(open('model_rf.pickle', 'rb'))
@@ -35,8 +26,6 @@ def Load4modelsAndPredict(input_fastapath, ul_seqlen=50, rnn_cutoff=0.5, output_
     df_pred_result['SVM prediction'] = pred_label_svc
     df_pred_result['RF prediction'] = pred_label_rf
     df_pred_result['GBM prediction'] = pred_label_gbc
-
-    # RNN model
     pred_label_rnn = PredictSeqUsingRNNmodel(pred_seqDi, max_seq_len=ul_seqlen, cutoff=rnn_cutoff)
     df_pred_result['RNN prediction'] = pred_label_rnn
 
@@ -110,12 +99,6 @@ def PredictSeqUsingRNNmodel(pred_seqDi, given_features=None, profile_type=0, max
                                                                                        padding_length=max_seq_len,
                                                                                        reshape=True,
                                                                                        with_label=False)
-    # elif profile_type == 1:
-    #     y_pred, x_pred = extractfeature.ConstructSequenceProfile_OneHotEncoding(initial_df_sequence_pred,
-    #                                                                               padding_length=max_seq_len, reshape=True)
-    # elif profile_type == 2:
-    #     y_pred, x_pred = extractfeature.ConstructSequenceProfile_BLOSUM62(initial_df_sequence_pred, normalize=True,
-    #                                                                         padding_length=max_seq_len, reshape=True)
 
     model = RecurrentModel_OneGruLayer(x_pred,num_unit=64)
     with tf.device('/cpu:0'):
@@ -128,8 +111,6 @@ def PredictSeqUsingRNNmodel(pred_seqDi, given_features=None, profile_type=0, max
 def PredictSeqUsingMLmodel(pred_seqDi, given_features, encode_profile, profile_type=0, model=None, scaler=None, max_seq_len=50):
     feat_adnc_pcp13 = ['AAC', 'DPC', 'NBP', 'CBP', 'pKa1', 'pKa2', 'Vol', 'VSC', 'SASA', 'pI', 'Chg', 'NCIS', 'Hyd1',
                        'Hydro', 'FEtmh', 'Pol1', 'Pol2']
-    feat_pcp13 = ['pKa1', 'pKa2', 'Vol', 'VSC', 'SASA', 'pI', 'Chg', 'NCIS', 'Hyd1', 'Hydro', 'FEtmh', 'Pol1', 'Pol2']
-    model_param_di = {'svc_C': 10, 'svc_gamma': 0.001, 'rf_trees': 200, 'gbc_trees': 200, 'gbc_maxdepth': 7}
 
     considered_features = feat_adnc_pcp13 if given_features is None else given_features
     reshape = False
@@ -142,15 +123,8 @@ def PredictSeqUsingMLmodel(pred_seqDi, given_features, encode_profile, profile_t
                                                                                              considered_features,
                                                                                              padding_length=max_seq_len,
                                                                                              reshape=reshape, with_label=False)
-        # elif profile_type == 1:
-        #     y_pred, x_pred = extractfeature.ConstructSequenceProfile_OneHotEncoding(initial_df_sequence_pred,
-        #                                                                             padding_length=max_seq_len, reshape=reshape)
-        # elif profile_type == 2:
-        #     y_pred, x_pred = extractfeature.ConstructSequenceProfile_BLOSUM62(initial_df_sequence_pred, normalize=True,
-        #                                                                       padding_length=max_seq_len, reshape=reshape)
 
-            # Here, y_pred should be returned as None
-        if ('AAC' or 'DPC' or 'NBP' or 'CBP') in considered_features and reshape is False:  # AAC系列features有要考慮的話就再跟profile的dataframe合併
+        if ('AAC' or 'DPC' or 'NBP' or 'CBP') in considered_features and reshape is False: 
             composition_based_feature_li = []
             if 'AAC' in considered_features:
                 composition_based_feature_li.append('AAC')
@@ -178,23 +152,7 @@ def PredictSeqUsingMLmodel(pred_seqDi, given_features, encode_profile, profile_t
 def RecurrentModel_OneGruLayer(input_feature, num_unit=64):
     sequence_length = input_feature.shape[1]
     dimension_eachaa = input_feature.shape[2]
-    # inputs = keras.Input(shape=(sequence_length, dimension_eachaa))
-    # x = keras.layers.GRU(units=num_unit)(inputs)
-    # outputs = layers.Dense(1, activation=tf.nn.sigmoid)(x)
-    # model_gru = keras.Model(inputs=inputs, outputs=outputs, name='model-GRU')
     model_gru = keras.Sequential()
     model_gru.add(layers.GRU(num_unit, input_shape=(sequence_length, dimension_eachaa)))
     model_gru.add(layers.Dense(1, activation='sigmoid'))
     return model_gru
-
-
-# def RecurrentModel_OneGruLayerWithDropout(input_feature, num_unit=64):
-#     sequence_length = input_feature.shape[1]
-#     dimension_eachaa = input_feature.shape[2]
-#     model_gru = keras.Sequential()
-#     model_gru.add(layers.InputLayer(input_shape=(sequence_length, dimension_eachaa)))
-#     model_gru.add(layers.Dropout(rate=0.25))
-#     model_gru.add(layers.GRU(num_unit))
-#     model_gru.add(layers.Dropout(rate=0.25))
-#     model_gru.add(layers.Dense(1, activation='sigmoid'))
-#     return model_gru
