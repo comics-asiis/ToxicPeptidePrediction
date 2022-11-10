@@ -1,5 +1,3 @@
-# SNOP means Silver Needle On Peptides
-# This program loads the pickle files of pre-trained toxic peptide classifiers and predicts the input peptide sequences
 import sys
 import os
 import errno
@@ -20,7 +18,6 @@ if len(sys.argv) > 2:
     print('Result file name:', output_filename)
 
 elif len(sys.argv) > 1:
-    # argv[1] should be the input fasta file path
     input_fastapath = sys.argv[1]
     if not os.path.isfile(input_fastapath):
         raise FileNotFoundError(
