@@ -1,1 +1,1 @@
-# ToxicPeptidePrediction
+# ToxTeller
