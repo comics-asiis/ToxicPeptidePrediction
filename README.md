@@ -3,6 +3,8 @@ ToxTeller is a toxicity prediction tool for peptides with length 10-50 amino aci
 
 It provides four predictors trained using logistic regression (LR), support vector machine (SVM), random forest (RF), and XGBoost.
 
+We also employ these four predictors in [ToxTeller webserver](https://comics.iis.sinica.edu.tw/ToxTeller).
+
 ## Usage
 ToxTeller takes a string of sequence file path as the argument.
 
