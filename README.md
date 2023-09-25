@@ -31,7 +31,7 @@ The training dataset, where the sequences share similarity smaller than 90%, was
 
 The independent test set, which consists of sequences sharing similarity smaller than 40% with the training dataset and within itself, was compiled for confirming the effectiveness of the model development process.
 
-The details for compiling the dataset are shown in the figure belows.
+The details for compiling the dataset are shown in the figure below.
 
 ![The flowchart ](images/dataset_flowchart.png)
 
