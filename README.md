@@ -31,7 +31,7 @@ The independent test set, which consists of sequences sharing similarity smaller
 
 The details for compiling the dataset are shown in the figure belows.
 
-![The flowchart ](/assets/images/dataset_flowchart.png)
+![The flowchart ](images/dataset_flowchart.png)
 
 The trained models (pickle files in _source_code_), also used in ToxTeller webserver, are trained on the whole dataset we collected keeping at most 90% sequence similarity. 
 
