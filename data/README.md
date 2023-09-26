@@ -6,4 +6,4 @@ The independent test set was used to confirm the effectiveness of the model deve
 
 The details for compiling the dataset are shown in the figure below.
 
-[Flowchart of construction of training and independent test datasets](dataset_flowchart.png)
+![Flowchart of construction of training and independent test datasets](dataset_flowchart.png)
