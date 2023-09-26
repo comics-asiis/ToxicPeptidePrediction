@@ -31,13 +31,13 @@ Each row represents a peptide with the format:
 The prediction is expressed by 1 (toxic) and 0 (non-toxic).
 
 ## Data
-The training dataset and independent test dataset, which were used in the development stage of ToxTeller, are provided in the folder _data_.
+The training dataset and independent test dataset, which were used in the development stage of ToxTeller, are provided in the folder [_data_](data).
 
 The independent test set consists of 100 toxic and 100 non-toxic peptide sequences, where all the 200 sequences share at most 40% similarity with each other (by CD-HIT) and with the training dataset (by CD-HIT-2D).
 
 The training dataset, despite sharing at most 40% similarity with the independent test dataset, has at most 90% similarity for all the sequences in itself (by CD-HIT).
 
-Note that the trained models (pickle files in _program_resource_), also used in ToxTeller webserver, are trained on the whole collected dataset keeping at most 90% sequence similarity. 
+Note that the trained models (pickle files in [_program_resource_](program_resource)), also used in ToxTeller webserver, are trained on the whole collected dataset keeping at most 90% sequence similarity. 
 
 
 
