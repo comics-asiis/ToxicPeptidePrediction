@@ -37,10 +37,6 @@ The independent test set consists of 100 toxic and 100 non-toxic peptide sequenc
 
 The training dataset, despite sharing at most 40% similarity with the independent test dataset, has at most 90% similarity for all the sequences in itself.
 
-The details for compiling the dataset are shown in the figure below.
-
-![The flowchart ](data/dataset_flowchart.png)
-
 Note that the trained models (pickle files in _program_resource_), also used in ToxTeller webserver, are trained on the whole collected dataset keeping at most 90% sequence similarity. 
 
 
