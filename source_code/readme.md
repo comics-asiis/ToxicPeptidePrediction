@@ -1,3 +1,5 @@
+The toxteller.py starts the entire workflow taking the sequence file path as the argument. 
+
 ## Python files (source code)
 + accessdata.py
 + extractfeature.py
