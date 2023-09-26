@@ -1,4 +1,4 @@
-##Data used in the development stage of ToxTeller
+## Data used in the development stage of ToxTeller
 
 _training_dataset.fasta_ was used to optimize hyper-parameters and feature combinations.
 
