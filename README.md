@@ -5,6 +5,12 @@ It provides four predictors trained using logistic regression (LR), support vect
 
 We also employ these four predictors in [ToxTeller webserver](https://comics.iis.sinica.edu.tw/ToxTeller).
 
+## Program files
+The essential files of ToxTeller are provided in the folder _program_resource_, and they need to be placed in the same folder to run ToxTeller. 
+
+These files include four python files that perform the workflow and four pairs of pickle files that correspond to the four prediction models and respective scalers to scale input features. 
+
+
 ## Usage
 ToxTeller takes a string of sequence file path as the argument.
 
