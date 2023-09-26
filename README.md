@@ -41,7 +41,7 @@ The details for compiling the dataset are shown in the figure below.
 
 ![The flowchart ](data/dataset_flowchart.png)
 
-The trained models (pickle files in _source_code_), also used in ToxTeller webserver, are trained on the whole dataset we collected keeping at most 90% sequence similarity. 
+Note that the trained models (pickle files in _program_resource_), also used in ToxTeller webserver, are trained on the whole collected dataset keeping at most 90% sequence similarity. 
 
 
 
