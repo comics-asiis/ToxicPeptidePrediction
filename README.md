@@ -16,9 +16,9 @@ python toxteller.py [sequence file path]
 ```
 
 ## Output
-The output of ToxTeller is a CSV file created in the same folder of the sequence file showing the prediction results. 
+The output of ToxTeller is a CSV file showing the prediction results generated in the same folder of the sequence file. 
 
-Each row represent a peptide sequence with the format:
+Each row represents a peptide with the format:
 
  Index, peptide name, peptide sequence, sequence length, prediction by LR, prediction by SVM, prediction by RF, prediction by XGBoost
  
