@@ -11,6 +11,22 @@ The essential files of ToxTeller are provided in the folder [_program_resource_]
 These files include four python files that perform the prediction workflow and four pairs of pickle files that correspond to the four prediction models and respective scalers to scale input features. 
 
 
+### Python files (source code)
++ toxteller.py => starts the prediction workflow taking the sequence file path as the argument.
++ modelwizard.py
++ accessdata.py
++ extractfeature.py
+
+### Pickle files (models)
++ Logistic regression: model_lr.pkl, scaler_lr.pkl
++ Support vector machine: model_svm.pkl, scaler_svm.pkl
++ Random forest: model_rf.pkl, scaler_rf.pkl
++ XGBoost: model_xgboost.pkl, scaler_xgboost.pkl
+
+### Package dependencies and their versions
++ requirements.txt
+
+
 ## Running ToxTeller
 ToxTeller takes a string of sequence file path as the argument.
 
@@ -21,6 +37,7 @@ The command to run ToxTeller is as follows:
 python toxteller.py [sequence file path]
 ```
 
+
 ## ToxTeller Output
 The output of ToxTeller is a CSV file which contains the prediction results of four prediction models and is located in the same folder of the sequence file. 
 
@@ -29,6 +46,7 @@ Each row of the CSV file represents a peptide in the following format:
  Index, peptide name, peptide sequence, sequence length, prediction by LR, prediction by SVM, prediction by RF, prediction by XGBoost
  
 The entry for prediction by each predictor is 1 if predicted as toxic, and 0 if predicted as non-toxic.
+
 
 ## Data
 The training dataset and independent test dataset, which were used in the development stage of ToxTeller for fair performance evaluation without over estimation, are provided in the folder [_data_](data).
