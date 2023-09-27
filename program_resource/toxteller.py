@@ -1,9 +1,9 @@
+""" This script is where ToxTeller starts to execute the prediction workflow """
 import sys
 import os
 import errno
 import modelwizard
 from datetime import datetime
-
 
 if __name__ == '__main__':
     now1 = datetime.now()
