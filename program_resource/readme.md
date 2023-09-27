@@ -1,10 +1,11 @@
-The toxteller.py starts the entire workflow taking the sequence file path as the argument. 
+## Dependencies
++ requirements.txt
 
 ## Python files (source code)
 + accessdata.py
 + extractfeature.py
 + modelwizard.py
-+ toxteller.py
++ toxteller.py => starts the prediction workflow taking the sequence file path as the argument. 
 
 ## Pickle files (models)
 + Logistic regression: model_lr.pkl, scaler_lr.pkl
