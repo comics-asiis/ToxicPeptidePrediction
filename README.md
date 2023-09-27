@@ -10,6 +10,8 @@ The essential files of ToxTeller are provided in the folder [_program_resource_]
 
 These files include four python files that perform the prediction workflow and four pairs of pickle files that correspond to the four prediction models and respective scalers to scale input features. 
 
+The configuration file which records the dependencies and version numbers for running ToxTeller is also provided.
+
 
 ### Python files (source code)
 + toxteller.py => starts the prediction workflow taking the sequence file path as the argument.
@@ -23,7 +25,7 @@ These files include four python files that perform the prediction workflow and f
 + Random forest: model_rf.pkl, scaler_rf.pkl
 + XGBoost: model_xgboost.pkl, scaler_xgboost.pkl
 
-### Package dependencies and their versions
+### Package dependencies 
 + requirements.txt
 
 
