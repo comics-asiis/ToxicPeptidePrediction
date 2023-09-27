@@ -3,14 +3,13 @@ import numpy as np
 from warnings import simplefilter
 simplefilter(action="ignore", category=pd.errors.PerformanceWarning)
 
-
 aaLi = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
 aaChargeDi = {'A': 0, 'C': 0, 'D': -1, 'E': -1, 'F': 0, 'G': 0, 'H': 0, 'I': 0, 'K': 1.0,
               'L': 0, 'M': 0, 'N': 0, 'P': 0, 'Q': 0, 'R': 1.0, 'S': 0, 'T': 0, 'V': 0,
               'W': 0, 'Y': 0}   # positive: R,K  negative: D,E  neutral: others
 aaHydroIdxDi = {'I': 4.5, 'V': 4.2, 'L': 3.8, 'F': 2.8, 'C': 2.5, 'M': 1.9, 'A': 1.8, 'G': -0.4, 'T': -0.7, 'W': -0.9,
                 'S': -0.8, 'Y': -1.3, 'P': -1.6, 'H': -3.2, 'E': -3.5, 'Q': -3.5, 'D': -3.5, 'N': -3.5, 'K': -3.9,
-                'R': -4.5}   # GRAVY index
+                'R': -4.5}   # hydropathy index (GRAVY index)
 aaHyd1Di = {'A': 0.62, 'C': 0.29, 'D': -0.9, 'E': -0.74, 'F': 1.19, 'G': 0.48, 'H': -0.4, 'I': 1.38, 'K': -1.5,
               'L': 1.06, 'M': 0.64, 'N': -0.78, 'P': 0.12, 'Q': -0.85, 'R': -2.53, 'S': -0.18, 'T': -0.05, 'V': 1.08,
               'W': 0.81, 'Y': 0.26}  # hydrophobicity
@@ -47,7 +46,7 @@ aaSASADi = {'A': 1.181, 'C': 1.461, 'D': 1.587, 'E': 1.862, 'F': 2.228, 'G': 0.8
               'W': 2.663, 'Y': 2.368}  # solvent accessibility of surface area			  
 
 ## Given a dictionary of peptide sequences and a list of feature names, this function returns a feature tables for the peptides.
-## The acceptable feature names are: AAC, DPC, NBP, CBP, Hydro, Hyd1, Hyd2, FEtmh, Pol1, Pol2, Vol, VSC, SA, pI, Chg, NCIS, pKa1, pKa2 
+## The acceptable feature names include AAC, DPC, NBP, CBP, Hydro, Hyd1, Hyd2, FEtmh, Pol1, Pol2, Vol, VSC, SA, pI, Chg, NCIS, pKa1, pKa2. 
 def GenerateFeatureTableGivenSeqDiAndFeatureLi(seq_di, feature_list, islabeled=True):
     df = GenerateInitialSequenceDataframe(seq_di, islabeled=islabeled)
     if 'Hydro' in feature_list:
@@ -135,7 +134,8 @@ def GenerateFeature_CBP(df, kmer=8):
         for residue in aaLi:
             labelName = 'C' + str(kmer) + 'mer_' + str(i) + '_' + residue
             df[labelName] = df['Sequence'].map(lambda s: 1 if s[pos] == residue else 0)
-			
+
+## The functions below create features by averaging the specific physicochemical properties of amino acids in peptide sequences
 def GenerateFeature_AminoAcidCharge(df):
     if 'Sequence' not in df.columns:
         return
