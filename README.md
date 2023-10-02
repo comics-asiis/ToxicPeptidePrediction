@@ -36,7 +36,7 @@ The sequence file must be in FASTA format, and each sequence consists of 10-50 a
 
 The command to run ToxTeller is as follows:
 
-    ```bash
+    ```
     python toxteller.py <SEQUENCE_FILE_PATH>
     ```
 
