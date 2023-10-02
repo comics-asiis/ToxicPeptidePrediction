@@ -35,9 +35,9 @@ ToxTeller takes a string of sequence file path as the argument.
 The sequence file must be in FASTA format, and each sequence consists of 10-50 amino acids.
 
 The command to run ToxTeller is as follows:
-    ```
-    python toxteller.py <SEQUENCE_FILE_PATH>
-    ```
+  ```
+  python toxteller.py <SEQUENCE_FILE_PATH>
+  ```
 
 
 ## ToxTeller Output
@@ -45,7 +45,7 @@ The output of ToxTeller is a CSV file which contains the prediction results of f
 
 Each row of the CSV file represents a peptide in the following format:
 
-    Index, peptide name, peptide sequence, sequence length, prediction by LR, prediction by SVM, prediction by RF, prediction by XGBoost
+  Index, peptide name, peptide sequence, sequence length, prediction by LR, prediction by SVM, prediction by RF, prediction by XGBoost
  
 The entry for prediction by each predictor is 1 if predicted as toxic, and 0 if predicted as non-toxic.
 
