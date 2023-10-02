@@ -36,7 +36,7 @@ The sequence file must be in FASTA format, and each sequence consists of 10-50 a
 
 The command to run ToxTeller is as follows:
 ```
-python toxteller.py [sequence file path]
+python toxteller.py <SEQUENCE_FILE_PATH>
 ```
 
 
@@ -57,7 +57,7 @@ The independent test dataset consists of 100 toxic and 100 non-toxic peptide seq
 
 The training dataset, despite sharing at most 40% similarity with the independent test dataset, has at most 90% similarity for all the sequences in itself (by CD-HIT).
 
-Note that the trained models (pickle files in [_program_resource_](program_resource)), which are also used in ToxTeller webserver, are trained on the whole collected dataset, larger than the combined independent test dataset and the training dataset, with at most 90% sequence similarity. 
+:ledger: Note that the trained models (pickle files in [_program_resource_](program_resource)), which are also used in ToxTeller webserver, are trained on the whole collected dataset, larger than the combined independent test dataset and the training dataset, with at most 90% sequence similarity. 
 
 
 
