@@ -17,10 +17,12 @@ The command to run ToxTeller is as follows:
 ```
 
 As a toy example, users can copy the following 4 lines of text, paste it into a TXT file, and name the file as "example.fasta":
+```
 >seq1
 GCCSNPVCHLEHSNLC
 >seq2
 SGGGDGSGMWFGPRL
+```
 
 Put "example.fasta" in the same folder of "toxteller.py" and run the command: 
 ```bash
