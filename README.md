@@ -16,7 +16,7 @@ The command to run ToxTeller is as follows:
   python toxteller.py <SEQUENCE_FILE_PATH>
 ```
 
-As a toy example, users can copy the following 4 lines of text, paste it into a TXT file, and name the file as "example.fasta":
+As a toy example, users can copy the following text representing two sample peptides in FASTA format, paste it into a TXT file, and name the file as "example.fasta":
 ```
 >seq1
 GCCSNPVCHLEHSNLC
@@ -28,7 +28,7 @@ Put "example.fasta" in the same folder of "toxteller.py" and run the command:
 ```bash
   python toxteller.py example.fasta
 ```
-Then an output file will be created in the folder.
+Then an output file named "example.fasta.csv" will be created in the folder, showing the prediction results of the two sample peptides.
 
 ## Program files
 The essential files of ToxTeller are provided in the folder [_program_resource_](program_resource), and they need to be placed in the same folder to run ToxTeller. 
