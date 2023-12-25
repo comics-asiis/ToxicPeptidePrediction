@@ -5,6 +5,29 @@ It provides four predictors trained using logistic regression (LR), support vect
 
 We also employ these four predictors in [ToxTeller webserver](https://comics.iis.sinica.edu.tw/ToxTeller).
 
+## Running ToxTeller
+ToxTeller takes a string of sequence file path as the argument.
+
+The sequence file must be in FASTA format, and each sequence consists of 10-50 amino acids.
+
+The command to run ToxTeller is as follows:
+
+```bash
+  python toxteller.py <SEQUENCE_FILE_PATH>
+```
+
+As a toy example, users can copy the following 4 lines of text, paste it into a TXT file, and name the file as "example.fasta":
+>seq1
+GCCSNPVCHLEHSNLC
+>seq2
+SGGGDGSGMWFGPRL
+
+Put "example.fasta" in the same folder of "toxteller.py" and run the command: 
+```bash
+  python toxteller.py example.fasta
+```
+Then an output file will be created in the folder.
+
 ## Program files
 The essential files of ToxTeller are provided in the folder [_program_resource_](program_resource), and they need to be placed in the same folder to run ToxTeller. 
 
@@ -27,18 +50,6 @@ The configuration file, which records the dependencies and version numbers for r
 
 ### Dependencies 
 + requirements.txt
-
-
-## Running ToxTeller
-ToxTeller takes a string of sequence file path as the argument.
-
-The sequence file must be in FASTA format, and each sequence consists of 10-50 amino acids.
-
-The command to run ToxTeller is as follows:
-
-```bash
-  python toxteller.py <SEQUENCE_FILE_PATH>
-```
 
 
 ## ToxTeller Output
